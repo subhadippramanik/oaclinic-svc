@@ -4,12 +4,56 @@ OAClinic is an application for the android platform of a private hospital. The f
 # API and module details
 ## User
 The application supports multiple field collectors. They can log in through the API and run the app from their devices.
-```sh
-GET /logins
 
+### get all users
+```sh
+GET /users
+response: 
+[
+    {
+        "id": 1,
+        "fullName": "Avik Manna",
+        "userName": "avik",
+        "userPassword": "root",
+        "userRole": "dev",
+        "isActive": "true",
+        "templatePath": null
+    },
+    {
+        "id": 2,
+        "fullName": "Subhadip Pramanik",
+        "userName": "subhadip",
+        "userPassword": "root",
+        "userRole": "dev",
+        "isActive": "true",
+        "templatePath": null
+    }
+]
+```
+### create user
+```sh
+POST /user
+body:
+{
+	"userName":"avik",
+	"fullName":"Avik Manna",
+	"userPassword":"root",
+	"userRole":"dev",
+	"isActive":"true"
+}
+
+response: 201 CREATED
+```
+### user login
+On login, API provides session id which needs to be passed with request header for all subsequent requests.
+```sh
 POST /login/{usrId} 
-body: {psk: <usr_password>}
-response: {sessionId: <generated_session_id>}
+body: {"userPassword":"root"}
+response: 
+{
+    "sessionId": "995eda70-bea9-4ae0-b1fb-721e30cd24d8",
+    "userName": "subhadip"
+}
 ```
 This module also provides API for `logout`, `change password` 
 ###### partially implemented 
