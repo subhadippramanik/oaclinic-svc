@@ -47,7 +47,7 @@ response: 201 CREATED
 ### user login
 On login, API provides session id which needs to be passed with request header for all subsequent requests.
 ```sh
-POST /login/{usrId} 
+POST /login/{usrName} 
 body: {"userPassword":"root"}
 response: 
 {

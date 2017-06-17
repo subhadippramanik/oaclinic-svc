@@ -14,7 +14,7 @@ public class User {
 	private String userName;
 	private String userPassword;
 	private String userRole;
-	private String isActive;
+	private Boolean active;
 	private String templatePath;
 
 	@Id
@@ -59,12 +59,12 @@ public class User {
 		this.userRole = userRole;
 	}
 
-	public String getIsActive() {
-		return isActive;
+	public Boolean isActive() {
+		return active;
 	}
 
-	public void setIsActive(String isActive) {
-		this.isActive = isActive;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public String getTemplatePath() {

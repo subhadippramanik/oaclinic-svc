@@ -1,4 +1,4 @@
-package com.oaclinic.user;
+package com.oaclinic.session;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
