@@ -48,15 +48,22 @@ response: 201 CREATED
 On login, API provides session id which needs to be passed with request header for all subsequent requests.
 ```sh
 POST /login/{usrName} 
-body: {"userPassword":"root"}
+body: {"userPassword":<some_password>}
 response: 
 {
     "sessionId": "995eda70-bea9-4ae0-b1fb-721e30cd24d8",
     "userName": "subhadip"
 }
 ```
-This module also provides API for `logout`, `change password` 
-###### partially implemented 
+### user logout
+```sh
+POST /logout/{usrName}
+header:
+"session-id":<generated_session-id>
+```
+
+This module also provides API for `change password` 
+
 ## Test
 This module shows/adds/updates test name and cost
 ```sh
