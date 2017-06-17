@@ -1,4 +1,4 @@
-package com.oaclinic.login;
+package com.oaclinic.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Login {
+public class User {
 
 	@Id
 	private int id;
