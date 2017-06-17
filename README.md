@@ -73,6 +73,21 @@ response: {
 
 ## Patient
 API to create/read/update patient details
+```sh
+GET /patients
+response: {
+    patient1{
+        name: 'Firstname Lastname',
+        id: '001',
+        address: 'some address'
+    },
+    patient2{
+        name: 'some doctor',
+        id: '002',
+        address: 'some address'
+    }
+}
+```
 
 ## Billing
 API to create/read/update bills
