@@ -24,6 +24,6 @@ public class LoginService {
 	}
 
 	public Login getLoginByName(String username, String userpwd) {
-		 return loginRepository.findOneByUserNmaeNPassword(username, userpwd);
+		 return loginRepository.findByUserNameAndUserPassword(username, userpwd);
 	}
 }

@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class LabBillingController {
 	
 	@Autowired
-	private LabBillingService labBillingDao;
+	private LabBillingService labBillingService;
 	
 	@RequestMapping(method= RequestMethod.POST, value="/labbillings")
 	public void addbilldetails(@RequestBody LabBilling labBilling){
-		labBillingDao.addBillDetails(labBilling);
+		labBillingService.addBillDetails(labBilling);
 	}
 	
 	@RequestMapping(value="/labbillings")
 	  public List<LabBilling> showLabBillings() {	 
-	   List<LabBilling> billings = labBillingDao.getAllLabBilling();
+	   List<LabBilling> billings = labBillingService.getAllLabBilling();
 	  	 return billings;	
   }	   
  
   @RequestMapping(value="/labbilling/{patientid}")
 	  public LabBilling checkUser(@PathVariable double patientid)throws ParseException {	 
-	    LabBilling billing = labBillingDao.getAllLabBillingById(patientid);
+	    LabBilling billing = labBillingService.getAllLabBillingById(patientid);
 	  	 return billing;	
   }
 }

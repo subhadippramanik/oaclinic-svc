@@ -1,91 +1,78 @@
 package com.oaclinic.login;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Login {
-	
+
 	@Id
-	private int UserId; 
-	private String FullName;
-	private String UserName; 
-	private String UserPwd;
-	private String UserRole;
-	private String IsActive;
-	private String TemplatePath;
-	
-	public Login() {
-		super();
+	private int id;
+	private String fullName;
+	private String userName;
+	private String userPassword;
+	private String userRole;
+	private String isActive;
+	private String templatePath;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public int getId() {
+		return id;
 	}
 
-	public Login(int userId, String fullName, String userName, String userPwd, String userRole, String isActive,
-			String templatePath) {
-		super();
-		UserId = userId;
-		FullName = fullName;
-		UserName = userName;
-		UserPwd = userPwd;
-		UserRole = userRole;
-		IsActive = isActive;
-		TemplatePath = templatePath;
-	}
-
-	public int getUserId() {
-		return UserId;
-	}
-
-	public void setUserId(int userId) {
-		UserId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFullName() {
-		return FullName;
+		return fullName;
 	}
 
 	public void setFullName(String fullName) {
-		FullName = fullName;
+		this.fullName = fullName;
 	}
 
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 
-	public String getUserPwd() {
-		return UserPwd;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setUserPwd(String userPwd) {
-		UserPwd = userPwd;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 	public String getUserRole() {
-		return UserRole;
+		return userRole;
 	}
 
 	public void setUserRole(String userRole) {
-		UserRole = userRole;
+		this.userRole = userRole;
 	}
 
 	public String getIsActive() {
-		return IsActive;
+		return isActive;
 	}
 
 	public void setIsActive(String isActive) {
-		IsActive = isActive;
+		this.isActive = isActive;
 	}
 
 	public String getTemplatePath() {
-		return TemplatePath;
+		return templatePath;
 	}
 
 	public void setTemplatePath(String templatePath) {
-		TemplatePath = templatePath;
+		this.templatePath = templatePath;
 	}
-	
-	
+
 }
