@@ -2,6 +2,7 @@ package com.oaclinic.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class TestService {
 
 	public void addTest(Test test) {
 		testRepository.save(test);
+	}
+
+	public void updateTest(Test test) {
+		Test testPresent = testRepository.findById(test.getId());
+		if(Objects.nonNull(testPresent)) {
+			testRepository.save(test);
+		}	
 	}
 }

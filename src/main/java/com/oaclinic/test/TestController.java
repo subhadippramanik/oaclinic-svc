@@ -40,4 +40,12 @@ public class TestController {
 		testService.addTest(test);
 		return HttpStatus.CREATED;
 	}
+	
+	@RequestMapping(value = "/test/id/{id}", method = RequestMethod.POST)
+	public HttpStatus updateTest(@PathVariable int id, @RequestBody Test test, @RequestHeader("session-id") String sessionId) {
+		test.setId(id);
+		testService.updateTest(test);
+		return HttpStatus.OK;
+	}
+	
 }
