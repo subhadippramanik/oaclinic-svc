@@ -132,23 +132,23 @@ response: 200 OK
 This module provides API to show/add/update doctors name and details
 ```sh
 GET /doctors
-response: {
-    doct1{
-        name: 'Dr. Firstname Lastname',
-        id: '001'
+response: 
+[
+    {
+        id: 1,
+        name: 'Dr. Firstname Lastname'        
     },
-    doct2{
-        name: 'some doctor',
-        id: '002'
+    {
+        id: 2,
+        name: 'some doctor'
     }
-}
+]
 
-GET /doctor/001
-response: {
-    doct1{
-        name: 'Dr. Firstname Lastname',
-        id: '001'
-    }
+GET /doctor/id/1
+response: 
+{
+        id: 1,
+        name: 'Dr. Firstname Lastname'        
 }
 ```
 
