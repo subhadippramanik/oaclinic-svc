@@ -16,7 +16,7 @@ response:
         "userName": "avik",
         "userPassword": "root",
         "userRole": "dev",
-        "isActive": "true",
+        "active": true,
         "templatePath": null
     },
     {
@@ -25,7 +25,7 @@ response:
         "userName": "subhadip",
         "userPassword": "root",
         "userRole": "dev",
-        "isActive": "true",
+        "active": true,
         "templatePath": null
     }
 ]
@@ -39,7 +39,7 @@ body:
 	"fullName":"Avik Manna",
 	"userPassword":"root",
 	"userRole":"dev",
-	"isActive":"true"
+	"active": true
 }
 
 response: 201 CREATED
@@ -66,34 +66,64 @@ This module also provides API for `change password`
 
 ## Test
 This module shows/adds/updates test name and cost
+### get all tests
 ```sh
 GET /tets
-response: {
-    test1{
-        name: 'blood group',
-        id: '001',
-        cost: 150.00
+response: 
+[
+    {
+        "id": 1,
+        "testName": "blood group",
+        "testType": "blood",
+        "testCost": 100
     },
-    test2{
-        name: 'some test',
-        id: '002',
-        cost: 250.00
+    {
+        "id": 2,
+        "testName": "blood sugar",
+        "testType": "blood",
+        "testCost": 350
     }
+]
+```
+### get test by id
+```sh
+GET /test/id/1
+response:  
+{
+    "id": 1,
+    "testName": "blood group",
+    "testType": "blood",
+    "testCost": 100
 }
-
-GET /test/001
-response:  {
-    test1{
-        name: 'blood group',
-        id: '001',
-        cost: 150.00
-    }
+```
+### add test
+```sh
+POST /test
+body:
+{
+	"testName":"blood group",
+	"testType":"blood",
+	"testCost":100
 }
-
-POST /test/001
-body: {
-    name: 'Blood Group',
-    cost: 100.00
+response: 201 CREATED
+```
+### update all properties of a test by id
+```sh
+POST /test/id/1
+body: 
+{    
+    "testName": "Blood Group",
+    "testType": "blood",
+    "testCost": 150
+}
+response: 200 OK
+```
+### update property(not all) of a test by id
+```sh
+POST /test/id/1
+body: 
+{
+    "testCost": 135
 }
 response: 200 OK
 ```
