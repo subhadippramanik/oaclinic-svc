@@ -16,7 +16,7 @@ response:
         "userName": "avik",
         "userPassword": "root",
         "userRole": "dev",
-        "isActive": "true",
+        "active": true,
         "templatePath": null
     },
     {
@@ -25,7 +25,7 @@ response:
         "userName": "subhadip",
         "userPassword": "root",
         "userRole": "dev",
-        "isActive": "true",
+        "active": true,
         "templatePath": null
     }
 ]
@@ -39,7 +39,7 @@ body:
 	"fullName":"Avik Manna",
 	"userPassword":"root",
 	"userRole":"dev",
-	"isActive":"true"
+	"active": true
 }
 
 response: 201 CREATED
