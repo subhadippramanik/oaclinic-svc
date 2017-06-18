@@ -3,14 +3,10 @@ package com.oaclinic.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.oaclinic.session.Session;
-import com.oaclinic.session.SessionRepository;
 
 @Service
 public class UserService {
@@ -18,13 +14,7 @@ public class UserService {
 	private static Logger LOGGER = Logger.getLogger(UserService.class);
 
 	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private Session session;
-
-	@Autowired
-	SessionRepository sessionRepository;
+	private UserRepository userRepository;	
 
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<>();
@@ -36,23 +26,15 @@ public class UserService {
 		return userRepository.findByUserName(userName);
 	}
 
-	public Session validateUser(User user) {
+	public Boolean isValidUser(User user) {
 		User userPresent = userRepository.findByUserNameAndUserPassword(user.getUserName(), user.getUserPassword());
 		if (userIsValidAndActive(userPresent)) {
-			session.setSessionId(UUID.randomUUID().toString());
-			session.setUserName(userPresent.getUserName());
-			try {
-				sessionRepository.save(session);
-			} catch (Exception e) {
-				LOGGER.error("Failed to save session!");
-				throw new RuntimeException(e);
-			}
+			return Boolean.TRUE;
 
 		} else {
 			throw new RuntimeException(
 					"Failed to validate user! Either user name password is not valid or user is not active");
 		}
-		return session;
 	}
 
 	private boolean userIsValidAndActive(User userPresent) {
@@ -68,12 +50,6 @@ public class UserService {
 			LOGGER.error("Failed to create user! User already present with Full Name: " + userPresent.getFullName());
 			return Boolean.FALSE;
 		}
-	}
-
-	public void invalidateSession(String userName, String sessionId) {
-		session.setSessionId(sessionId);
-		session.setUserName(userName);
-		sessionRepository.delete(session);
 	}
 
 }
