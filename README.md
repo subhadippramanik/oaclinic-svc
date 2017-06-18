@@ -130,6 +130,7 @@ response: 200 OK
 
 ## Doctor
 This module provides API to show/add/update doctors name and details
+### get all doctors
 ```sh
 GET /doctors
 response: 
@@ -143,7 +144,9 @@ response:
         name: 'some doctor'
     }
 ]
-
+```
+### get doctor by id
+```sh
 GET /doctor/id/1
 response: 
 {
@@ -151,23 +154,32 @@ response:
         name: 'Dr. Firstname Lastname'        
 }
 ```
-
+### add doctor
+```sh
+POST /doctor
+body: 
+{
+    name: 'Dr. Firstname Lastname'
+}
+response: 201 CREATED
+```
 ## Patient
 API to create/read/update patient details
 ```sh
 GET /patients
-response: {
-    patient1{
+response: 
+[
+    {
+        id: 1,
         name: 'Firstname Lastname',
-        id: '001',
         address: 'some address'
     },
-    patient2{
-        name: 'some doctor',
-        id: '002',
+    {
+        id: 2,
+        name: 'some patient',        
         address: 'some address'
     }
-}
+]
 ```
 
 ## Billing
