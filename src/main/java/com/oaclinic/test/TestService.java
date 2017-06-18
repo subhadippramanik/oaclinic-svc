@@ -38,6 +38,8 @@ public class TestService {
 		Test testPresent = testRepository.findById(test.getId());
 		if(Objects.nonNull(testPresent)) {
 			testRepository.save(test);
-		}	
+		} else {
+			throw new RuntimeException("No such test found!");
+		}
 	}
 }
