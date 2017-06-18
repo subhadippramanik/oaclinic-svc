@@ -1,5 +1,7 @@
 package com.oaclinic.session;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Session {
 	private int id;
 	private String sessionId;
 	private String userName;
+	private Timestamp createTimeStamp;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,4 +41,12 @@ public class Session {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public Timestamp getTimeStamp() {
+		return createTimeStamp;
+	}
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.createTimeStamp = timeStamp;
+	}
+	
+	
 }

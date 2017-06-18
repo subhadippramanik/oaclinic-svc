@@ -1,5 +1,6 @@
 package com.oaclinic.user;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -41,6 +42,7 @@ public class UserService {
 		if (userIsValidAndActive(userPresent)) {
 			session.setSessionId(UUID.randomUUID().toString());
 			session.setUserName(userPresent.getUserName());
+			session.setTimeStamp(new Timestamp(System.currentTimeMillis()));
 			try {
 				sessionRepository.save(session);
 			} catch (Exception e) {
