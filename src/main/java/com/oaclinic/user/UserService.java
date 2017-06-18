@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oaclinic.session.Session;
+import com.oaclinic.session.SessionRepository;
 
 @Service
 public class UserService {
-	
+
 	private static Logger LOGGER = Logger.getLogger(UserService.class);
 
 	@Autowired
@@ -22,25 +23,34 @@ public class UserService {
 	@Autowired
 	private Session session;
 
+	@Autowired
+	SessionRepository sessionRepository;
+
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<>();
 		userRepository.findAll().forEach(users::add);
 		return users;
 	}
-	
+
 	public User getUser(String userName) {
 		return userRepository.findByUserName(userName);
 	}
 
 	public Session validateUser(User user) {
 		User userPresent = userRepository.findByUserNameAndUserPassword(user.getUserName(), user.getUserPassword());
-		if (userIsValidAndActive(userPresent)) {			
+		if (userIsValidAndActive(userPresent)) {
 			session.setSessionId(UUID.randomUUID().toString());
 			session.setUserName(userPresent.getUserName());
-			//TODO store session id to repository
-			//sessionRepository.save(session);
+			try {
+				sessionRepository.save(session);
+			} catch (Exception e) {
+				LOGGER.error("Failed to save session!");
+				throw new RuntimeException(e);
+			}
+
 		} else {
-			throw new RuntimeException("Failed to validate user! Either user name password is not valid or user is not active");
+			throw new RuntimeException(
+					"Failed to validate user! Either user name password is not valid or user is not active");
 		}
 		return session;
 	}
@@ -51,7 +61,7 @@ public class UserService {
 
 	public Boolean createUser(User user) {
 		User userPresent = getUser(user.getUserName());
-		if(Objects.isNull(userPresent)) {
+		if (Objects.isNull(userPresent)) {
 			userRepository.save(user);
 			return Boolean.TRUE;
 		} else {
@@ -60,9 +70,10 @@ public class UserService {
 		}
 	}
 
-	public void invalidateSession(String userId, String sessionId) {
-		//TODO remove session from repository
-		
+	public void invalidateSession(String userName, String sessionId) {
+		session.setSessionId(sessionId);
+		session.setUserName(userName);
+		sessionRepository.delete(session);
 	}
 
 }
