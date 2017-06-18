@@ -44,8 +44,13 @@ public class TestController {
 	@RequestMapping(value = "/test/id/{id}", method = RequestMethod.POST)
 	public HttpStatus updateTest(@PathVariable int id, @RequestBody Test test, @RequestHeader("session-id") String sessionId) {
 		test.setId(id);
-		testService.updateTest(test);
-		return HttpStatus.OK;
+		try {
+			testService.updateTest(test);
+			return HttpStatus.OK;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+		}
+		return HttpStatus.NOT_ACCEPTABLE;
 	}
 	
 }
