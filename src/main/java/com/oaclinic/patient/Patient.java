@@ -21,6 +21,11 @@ public class Patient {
 	@NotNull
 	private String address;
 
+	public Patient(String name, String address) {
+		super();
+		this.name = name;
+		this.address = address;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
