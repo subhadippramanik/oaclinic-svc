@@ -1,4 +1,4 @@
-package com.oaclinic.bill;
+package com.oaclinic.billingNTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class BillController {
+public class BillingTestController {
 	
 	@Autowired
-	private BillService billService;
-	
-	@RequestMapping(value="/billing", method=RequestMethod.POST)
-	public HttpStatus addBill(@RequestBody Bill bill){
-		billService.addBill(bill);
-		return HttpStatus.CREATED;
+	private BillingTestService billingTestService;
+
+	@RequestMapping(value = "/addBilling", method= RequestMethod.POST)
+	public HttpStatus addbilltest(@RequestBody BillingNTest billntest){
+		billingTestService.addbilltest(billntest);
+		return HttpStatus.OK;
 	}
 }
